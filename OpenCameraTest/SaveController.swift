@@ -11,35 +11,28 @@ import AVFoundation
 class SaveController: UIViewController {
     
     var myCamera:Camera!
-    
+    let Synthesizer = AVSpeechSynthesizer()
 
     
     @IBAction func ChangeSwip(_ sender: Any) {
         if(myCamera.backCamera){
             myCamera.stop()
-            let synthesizer = AVSpeechSynthesizer()
+            Synthesizer.stopSpeaking(at: .immediate)
             let utterance = AVSpeechUtterance(string : "현재, 전면카메라입니다.")
             
             utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
-            synthesizer.speak(utterance)
+            Synthesizer.speak(utterance)
         }else{
+            Synthesizer.stopSpeaking(at: .immediate)
             myCamera.start()
-            let synthesizer = AVSpeechSynthesizer()
+            let Synthesizer = AVSpeechSynthesizer()
             let utterance = AVSpeechUtterance(string : "현재, 후면카메라입니다.")
             
             utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
-            synthesizer.speak(utterance)
+            Synthesizer.speak(utterance)
         }
     }
-        //frontCamera = FrontCamera(controller: self, andImageView: SaveImgView)
-  
     
-//    @IBAction func swipeHandler(_ gestureRecognizer : UISwipeGestureRecognizer) {
-//        if (gestureRecognizer.state == .ended) {
-//
-//        }
-//    }
-
     @IBOutlet var SaveImgView: UIImageView!
 
     override func viewDidLoad() {
@@ -62,6 +55,7 @@ class SaveController: UIViewController {
     // Stop it when it disappears
     override func viewWillDisappear(_ animated: Bool) {
         myCamera.stop()
+        Synthesizer.stopSpeaking(at: . immediate)
     }
     
     /*
