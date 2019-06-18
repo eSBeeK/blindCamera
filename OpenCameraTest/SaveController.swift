@@ -25,7 +25,7 @@ class SaveController: UIViewController {
         }else{
             Synthesizer.stopSpeaking(at: .immediate)
             myCamera.start()
-            let Synthesizer = AVSpeechSynthesizer()
+            //let Synthesizer = AVSpeechSynthesizer()
             let utterance = AVSpeechUtterance(string : "현재, 후면카메라입니다.")
             
             utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
@@ -40,11 +40,11 @@ class SaveController: UIViewController {
         myCamera = Camera(controller: self, andImageView: SaveImgView)
         
         // Do any additional setup after loading the view.
-        let synthesizer = AVSpeechSynthesizer()
+       // let synthesizer = AVSpeechSynthesizer()
         let utterance = AVSpeechUtterance(string : "현재, 후면카메라입니다. 메인화면으로 가시려면  오른쪽으로 스와이프를, 전/후면 카메라 변경은 왼쪽으로 스와이프 해주십시오.")
         
         utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
-        synthesizer.speak(utterance)
+        Synthesizer.speak(utterance)
     }
     
 
@@ -54,8 +54,8 @@ class SaveController: UIViewController {
     
     // Stop it when it disappears
     override func viewWillDisappear(_ animated: Bool) {
-        myCamera.stop()
         Synthesizer.stopSpeaking(at: . immediate)
+        myCamera.stop()
     }
     
     /*
