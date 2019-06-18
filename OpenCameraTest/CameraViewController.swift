@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 class CameraViewController: UIViewController {
 
     var myCamera : Camera!
+    let Synthesizer = AVSpeechSynthesizer()
     
     @IBOutlet var CameraImg: UIImageView!
     
@@ -20,6 +22,9 @@ class CameraViewController: UIViewController {
         myCamera = Camera(controller: self, andImageView: CameraImg)
         // Do any additional setup after loading the view.
         super.viewDidLoad()
+        let utterance = AVSpeechUtterance(string : "얼굴 인식을 시작합니다.")
+        Synthesizer.speak(utterance)
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         myCamera.start()
@@ -28,6 +33,7 @@ class CameraViewController: UIViewController {
     // Stop it when it disappears
     override func viewWillDisappear(_ animated: Bool) {
         myCamera.stop()
+        Synthesizer.stopSpeaking(at: .immediate)
     }
 
     /*

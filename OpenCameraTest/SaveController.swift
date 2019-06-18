@@ -16,16 +16,21 @@ class SaveController: UIViewController {
     
     @IBAction func ChangeSwip(_ sender: Any) {
         if(myCamera.backCamera){
+            
             myCamera.stop()
+            
             Synthesizer.stopSpeaking(at: .immediate)
             let utterance = AVSpeechUtterance(string : "현재, 전면카메라입니다.")
             
             utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
             Synthesizer.speak(utterance)
+            
         }else{
+            
             Synthesizer.stopSpeaking(at: .immediate)
+            
             myCamera.start()
-            //let Synthesizer = AVSpeechSynthesizer()
+            
             let utterance = AVSpeechUtterance(string : "현재, 후면카메라입니다.")
             
             utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
