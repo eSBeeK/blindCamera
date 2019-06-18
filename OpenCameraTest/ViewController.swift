@@ -23,11 +23,9 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         //myCamera = Camera(controller: self, andImageView: imageView)
         let synthesizer = AVSpeechSynthesizer()
-        let utterance = AVSpeechUtterance(string : "친구들을 만나느라 샤샤샤 조르지마 어디가지 않아 부르게해줄게 베이베.")
-        
+        let utterance = AVSpeechUtterance(string : "얼굴 인식 학습을 하시려면 화면 위쪽을, 얼굴 인식 기능 사용은 화면 아래쪽을 눌러주세요.")
+
         utterance.voice = AVSpeechSynthesisVoice (language: "ko_KR")
-        
-        
         synthesizer.speak(utterance)
     }
     override func viewDidAppear(_ animated: Bool) {

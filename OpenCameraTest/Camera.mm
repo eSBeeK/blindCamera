@@ -66,7 +66,6 @@ using namespace cv;
     self.BackCamera = YES;
     [videoCameraFront stop];
     [videoCameraBack start];
-    
     //videoCameraBack.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront; // Use the back camera
 }
 
